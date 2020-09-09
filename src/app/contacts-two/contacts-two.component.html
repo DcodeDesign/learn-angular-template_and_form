@@ -1,0 +1,87 @@
+<!--
+<div class="container">
+    <input placeholder="Type text" (keyup)="onkey($event)">
+    <p>{{ values }}</p>
+
+</div>
+-->
+
+<div class="container">
+    <div class="row">
+        <form class="col s12" (ngSubmit)="onSubmit(contactForm.form.value)" #contactForm="ngForm">
+            <div class="row">
+                <div class="input-field col s4">
+                    <input #firstName="ngModel" id="first_name" name="first_name" type="text" class="validate" required
+                    [(ngModel)]="model.first_name" />
+                    <label for="first_name" >Nom</label>
+                    <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+                        <div *ngIf="firstName.errors['required']" class="message">
+                            <p>Veuillez entrer un nom, merci.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-field col s4">
+                    <input #lastName="ngModel" id="last_name" name="last_name" type="text" class="validate" required 
+                    [(ngModel)]="model.last_name" />
+                    <label for="last_name" >Prénom</label>
+                    <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">
+                        <div *ngIf="lastName.errors['required']" class="message">
+                            <p>Veuillez entrer un prénom, merci.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-field col s4">
+                    <input #gender="ngModel" id="gender" name="gender" type="text" class="validate" required 
+                    [(ngModel)]="model.gender" />
+                    <label for="gender" >Gender</label>
+                    <div *ngIf="gender.invalid && (gender.dirty || gender.touched)" class="alert alert-danger">
+                        <div *ngIf="gender.errors['required']" class="message">
+                            <p>Veuillez entrer un genre, merci.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s4">
+                    <input #email="ngModel" id="email" name="email" type="text" class="validate" required 
+                    [(ngModel)]="model.email" />
+                    <label for="email" >Email</label>
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                        <div *ngIf="email.errors['required']" class="message">
+                            <p>Veuillez entrer un email, merci.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-field col s4">
+                    <select #company="ngModel" id="company" name="company" type="text" class="validate" required 
+                    [(ngModel)]="model.company">
+                        <option value="" disabled selected>Choose a company</option>
+                        <option *ngFor="let company of companies" [value]="company">{{ company }}</option>
+                      </select> 
+                      <label for="company">Company</label>
+                      <div *ngIf="company.invalid && (company.dirty || company.touched)" class="alert alert-danger">
+                        <div *ngIf="company.errors['required']" class="message">
+                            <p>Veuillez entrer une companie, merci.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="waves-effect waves-light btn" id="btn" type="submit" [disabled]="!contactForm.form.valid">Ajouter Contact</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m6" *ngFor="let contact of model" [@contactAnimation]="stateCard">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+            <span class="card-title">{{contact.first_name}} {{contact.last_name}}</span>
+            <p>{{contact.gender}}</p>
+            <p>{{contact.company}}</p>
+            </div>
+            <div class="card-action">
+            <a href="#">{{contact.email}}</a>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+<div *ngIf="buttonState" >
+    <p [@headerAnimation]="headerState" [ngStyle]="paraStyle" >contacts works!</p>
+    <p [style.background-color]="background" >contacts works!</p>
+</div>
+<button (click)="animate()" >Animate</button>
+<button (click)="headerAnimate()" >Animate</button>
+

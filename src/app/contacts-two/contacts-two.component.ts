@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate, animation } from '@angular/animations';
+import { Contact } from '../models/Contact';
 
 @Component({
-  selector: 'app-contacts',
-  templateUrl: './contacts.component.html',
-  styleUrls: ['./contacts.component.scss'],
+  selector: 'app-contacts-two',
+  templateUrl: './contacts-two.component.html',
+  styleUrls: ['./contacts-two.component.scss'],
   animations: [
     //headerAnimation
     trigger('headerAnimation', [
@@ -33,11 +34,11 @@ import { trigger, state, style, transition, animate, animation } from '@angular/
     ])
   ]
 })
-export class ContactsComponent implements OnInit {
+export class ContactsTwoComponent implements OnInit {
 
   values: string;
-  
   stateCard = 'inactive';
+  /*
   contacts = [{ "first_name": "Tatum", "last_name": "Vernon", "email": "tvernon0@lycos.com", "gender": "Female", "company": "Youopia" },
   { "first_name": "Anet", "last_name": "Bellis", "email": "abellis1@cnn.com", "gender": "Female", "company": "Oloo" },
   { "first_name": "Pippa", "last_name": "Goymer", "email": "pgoymer2@ihg.com", "gender": "Female", "company": "Browsecat" },
@@ -48,7 +49,21 @@ export class ContactsComponent implements OnInit {
   gender= '';
   email= '';
   company= '';
+  */
 
+  companies = ['Linkedin', 'Manny Design', 'Apple'];
+  model: any = [new Contact('Manny', 'Henri', 'manny-henri@gmail.com', 'Male', this.companies[0])];
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  onkey(e: any) {
+    this.values = e.target.value;
+  }
+
+  /*
   addContact(value: any) {
     this.contacts.unshift({
       first_name: value.first_name,
@@ -63,14 +78,15 @@ export class ContactsComponent implements OnInit {
     this.email= '';
     this.company= '';
   }
+  */
 
-  onkey(e: any) {
-    this.values = e.target.value;
-  }
-
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  onSubmit(value: any) {
+    this.model.unshift(new Contact(
+        value.first_name,
+        value.last_name,
+        value.gender,
+        value.email,
+        value.company
+      ))
+    }
 }
