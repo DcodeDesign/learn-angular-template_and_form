@@ -8,7 +8,7 @@ export class Contact {
     ) { }
 }
 
-export const contacts: Contact[] = [
+export const Contacts: Contact[] = [
     {
         "first_name": "Manny",
         "last_name": "Henry",

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate, animation } from '@angular/animations';
-import { Contact } from '../models/Contact';
+import { Contact, Contacts } from '../interfaces/contact';
 
 @Component({
   selector: 'app-contacts-two',
@@ -52,7 +52,7 @@ export class ContactsTwoComponent implements OnInit {
   */
 
   companies = ['Linkedin', 'Manny Design', 'Apple'];
-  model: any = [new Contact('Manny', 'Henri', 'manny-henri@gmail.com', 'Male', this.companies[0])];
+  model: any = new Contact('Manny', 'Henri', 'manny-henri@gmail.com', 'Male', this.companies[0]);
 
   constructor() { }
 
