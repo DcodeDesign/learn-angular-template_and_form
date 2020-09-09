@@ -1,0 +1,70 @@
+<div>
+    <!-- Interpolation -->
+    <h1>{{ header }}</h1>
+    <h2 *ngIf="title">{{ title }}</h2>
+    <p>{{ contacts[1].first_name }}</p>
+
+    <hr>
+
+    <!-- ngIf else then-->
+    <div *ngIf="title; then visibleTitle else noTitle">
+        <h1>{{ header }}</h1> <!-- apparaîtra jamais-->
+    </div>
+
+    <ng-template #visibleTitle>
+        <h2>{{title}}</h2>
+    </ng-template>
+
+    <ng-template #noTitle>
+        <h2>Pas de titre</h2>
+    </ng-template>
+
+    <hr>
+
+    <!-- ngFor -->
+    <ul>
+        <li *ngFor="let contact of contacts;">
+            {{ contact.first_name }}
+        </li>
+    </ul>
+
+    <hr>
+
+    <!-- ngSwitch -->
+    <ul [ngSwitch]="person">
+        <li *ngSwitchCase="'Tatum'">Je suis Tatum</li>
+        <li *ngSwitchCase="'Anet'">Hello Anet !</li>
+        <li *ngSwitchCase="'Pippa'">Hey Pippa !</li>
+    </ul>
+
+    <ul *ngFor="let contact of contacts;" [ngSwitch]="contact.first_name">
+        <li *ngSwitchCase="'Tatum'">Je suis Tatum</li>
+        <li *ngSwitchCase="'Anet'">Hello Anet !</li>
+        <li *ngSwitchCase="'Pippa'">Hey Pippa !</li>
+    </ul>
+
+    <hr>
+
+    <!-- Variable Local + autre -->
+    <input #varLocal value="Text..." (click)="clickInInput($event)" (keyup)="0">
+    <span> - {{varLocal.value.length }}</span>
+    <h3>{{varLocal.value }}</h3>
+
+
+    <br>
+
+    <input value="{{ inputText }}" (click)="clickInInput($event)" (keyup)="onKeyUp($event)">
+    <span> - {{ inputText.length }}</span>
+    <h3>{{ inputText }}</h3>
+
+    <!-- binding de class -->
+    <input #input [class.error]="countLetter(input)" value="{{ inputText }}" (click)="clickInInput($event)"
+        (keyup)="onKeyUp($event)">
+    <span> - {{ inputText.length }}</span>
+    <h3>{{ inputText }}</h3>
+
+    <input #input [class.error]="countLetter(input)" value="{{ inputText }}" (click)="clickInInput($event)"
+        (keyup)="onKeyUp($event)">
+    <span [ngClass]="input.value.length > 15 ? 'messageAlert' : 'messageSuccess'"> - {{ inputText.length }}</span>
+    <h3>{{ inputText }}</h3>
+</div>
